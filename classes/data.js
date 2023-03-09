@@ -1,18 +1,22 @@
 import { Dodo } from "./dodo.js"
-import LineByLine from "n-readlines"
-import { appendFileSync, writeFileSync} from "fs"
+//import LineByLine from "n-readlines"
+import { writeFileSync, readFileSync } from 'fs'
 
 export class Data {
     constructor(){
         this.dodos = []
         this.counter = 0
-        //this.file = "data.csv"
+       // this.file = "data.csv"
+        this.file = "data.json"
+
     }
 
     addDodo(title , content) {
         const dodo = new Dodo(++this.counter, title , content)
         this.dodos.push(dodo)
         //appendFileSync(this.file, `${dodo.id};${dodo.title};${dodo.content}\n` )
+        
+
     }
 
     // read() {
@@ -29,6 +33,11 @@ export class Data {
     //     }
     // }
 
+    write() {
+        
+        writeFileSync(this.file, JSON.stringify(this.dodos))
+    }
+
     // write() {
     //     let content = ""
     //     this.dodos.forEach(dodo => {
@@ -36,6 +45,16 @@ export class Data {
     //     })
     //     writeFileSync(this.file, content)
     // }
+
+    read() {
+        //try mettre ce qu'il ya dessous dans le try
+        const content = readFileSync(this.file).toString()
+        this.dodos = JSON.parse(content)
+        this.counter = (this.todos[this.dodos.length-1] != undefined) ? this.todos[this.dodos.length-1].id : 0
+        console.log(this.dodos[0].title);
+        //catch mettre this.write dans le catch
+
+    }
 
     getDodo(id){
         return this.dodos.find(d => d.id == id)
@@ -46,7 +65,7 @@ export class Data {
         if(dodo != undefined){
             dodo.title = title
             dodo.content = content
-            //this.write()
+            this.write()
             return true
         }
 
@@ -61,7 +80,7 @@ export class Data {
             dodo.isDone = !dodo.isDone
             //ou bien dodo.isDone = true
 
-            //this.write()
+            this.write()
             return true
         }
 
@@ -78,7 +97,7 @@ export class Data {
         const dodo = this.updateDodo(id)
         if(dodo != undefined){
             this.dodos = this.dodos.filter(d => d.id != id)
-            //this.write()
+            this.write()
             return true
         }
         return false

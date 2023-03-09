@@ -2,6 +2,7 @@ import express from "express"
 import fs from "fs"
 import LineByline from "n-readlines"
 import { Data } from "./classes/data.js"
+import { writeFileSync, readFileSync } from 'fs'
 
 
 const data = new Data()
@@ -62,6 +63,6 @@ app.delete('/dodos/:id',(req,res) => {
 })
 
 app.listen(5001, () => {
-    //data.read()
+    data.read()
     console.log("port 5001 écouté")   
 })
