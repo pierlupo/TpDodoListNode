@@ -23,10 +23,14 @@ app.get('/dodos/:id',(req,res) => {
     }
 })
 
+app.get('dodos/search/:search', (req, res) => {
+    res.json(data.searchToDoByTitle(req.params.search))
+})
+
 app.put('/dodos/:id',(req,res) => {
     const {title, content} = req.body
     if(data.updateDodo(req.params.id, title, content)) {
-        res.json({message : "dodo modifié"})
+        res.json({message : "dodo modifiée"})
     }else {
         res.json({message : "erreur lors de la modification de la dodo"})
     }
@@ -36,7 +40,7 @@ app.put('/dodos/:id',(req,res) => {
 app.put('/dodos/:id/:isDone',(req,res) => {
     const {title, content} = req.body
     if(data.upDateDodoStatus(req.params.id, title, content, req.params.isDone )) {
-        res.json({message : "Status dodo modifié"})
+        res.json({message : "Status dodo modifiée"})
     }else {
         res.json({message : "erreur lors de la modification du status de la dodo"})
     }
@@ -46,12 +50,12 @@ app.put('/dodos/:id/:isDone',(req,res) => {
 app.post('/dodos',(req,res) => {
     const {title, content} = req.body
     data.addDodo(title, content)
-    res.json({message : "dodo ajouté"})
+    res.json({message : "dodo ajoutée"})
 })
 
 app.delete('/dodos/:id',(req,res) => {
     if(data.deleteDodo(req.params.id)) {
-        res.json({message : "dodo supprimé"})
+        res.json({message : "dodo supprimée"})
     }else {
         res.json({message : "erreur lors de la suppression de la dodo"})
     }

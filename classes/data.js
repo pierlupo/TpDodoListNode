@@ -58,7 +58,9 @@ export class Data {
         if(dodo != undefined){
             dodo.title = title
             dodo.content = content
-            dodo.isDone = true
+            dodo.isDone = !dodo.isDone
+            //ou bien dodo.isDone = true
+
             //this.write()
             return true
         }
@@ -66,6 +68,12 @@ export class Data {
         return false
 
     }
+
+    //Méthode de recherche de dodo par titre
+    searchToDoByTitle(search) {
+        return this.dodos.filter(d => d.title.includes(search))
+    }
+
     deleteDodo(id){
         const dodo = this.updateDodo(id)
         if(dodo != undefined){
