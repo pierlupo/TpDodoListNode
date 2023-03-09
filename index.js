@@ -33,6 +33,16 @@ app.put('/dodos/:id',(req,res) => {
 
 })
 
+app.put('/dodos/:id/:isDone',(req,res) => {
+    const {title, content} = req.body
+    if(data.upDateDodoStatus(req.params.id, title, content, req.params.isDone )) {
+        res.json({message : "Status dodo modifié"})
+    }else {
+        res.json({message : "erreur lors de la modification du status de la dodo"})
+    }
+
+})
+
 app.post('/dodos',(req,res) => {
     const {title, content} = req.body
     data.addDodo(title, content)

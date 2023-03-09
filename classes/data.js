@@ -53,6 +53,19 @@ export class Data {
         return false
     }
 
+    upDateDodoStatus(id, title, content){
+        const dodo = this.getDodo(id)
+        if(dodo != undefined){
+            dodo.title = title
+            dodo.content = content
+            dodo.isDone = true
+            //this.write()
+            return true
+        }
+
+        return false
+
+    }
     deleteDodo(id){
         const dodo = this.updateDodo(id)
         if(dodo != undefined){
