@@ -4,20 +4,6 @@ import { appendFileSync, writeFileSync} from "fs"
 
 export class Data {
     constructor(){
-        // this.contacts = [{
-        //     id: 1,
-        //     nom: "Michel",
-        //     prenom: "Louise",
-        //     tel: "0123456789" ,
-        //     email: "test@test.com"
-        // },
-        // {
-        //     id: 2,
-        //     nom: "Blanqui",
-        //     prenom: "Louis-Auguste",
-        //     tel: "0223456789" ,
-        //     email: "test1@test.com"
-        // }]
         this.dodos = []
         this.counter = 0
         //this.file = "data.csv"
